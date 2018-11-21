@@ -1,0 +1,54 @@
+<!-- <form #f="ngForm" [formGroup]="editForm" (ngSubmit)="f.form.valid && onSubmit()"> -->
+<form class="adjust" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-">
+          <input type="number" class="form-control adjust" formControlName="euro" placeholder="Euro*" [ngClass]="{ 'is-invalid': submitted && f.euro.errors }">
+          <div *ngIf="submitted && f.euro.errors" class="invalid-feedback">
+            <div *ngIf="f.euro.errors.required">Euro is required</div>
+          </div>
+        </div>
+        <div class="col-">
+          <input type="datetime" class="form-control adjust" formControlName="dateTime" placeholder="dd.mm.yyyy / hh:mm*"
+            [ngClass]="{ 'is-invalid': submitted && f.dateTime.errors }">
+          <div *ngIf="submitted && f.dateTime.errors" class="invalid-feedback">
+            <div *ngIf="f.dateTime.errors.required">Date and time is required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <label>
+      Freeclick:
+      <input type="checkbox" formControlName="freeclick">
+    </label>
+    <form [formGroup]="networkForm">
+      <label>
+        Network:
+        <label> a
+          <input type="radio" formControlName="network" value="a">
+        </label>
+        <label> b
+          <input type="radio" formControlName="network" value="b">
+        </label>
+        <label> c
+          <input type="radio" formControlName="network" value="c">
+        </label>
+      </label>
+    </form>
+    <form [formGroup]="plistaProduct">
+      <div class="form-group">
+        <label>
+          PlistaProduct:
+          <select class="form-control" formControlName="products">
+            <option *ngFor="let pro of products" [ngValue]="pro">
+              {{ pro.name }}
+            </option>
+          </select>
+        </label>
+      </div>
+    </form>
+    <button class="btn btn-primary" type="submit">Update</button>
+  </div>
+</form>
