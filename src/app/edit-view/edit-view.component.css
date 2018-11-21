@@ -1,3 +1,12 @@
 .adjust {
-    margin-top: 20px;
+  margin-top: 10px;
+}
+
+.rowAdjust {
+  padding-left: 8px;
+
+}
+
+.adjustNetwork {
+    padding-left: 15px;
 }

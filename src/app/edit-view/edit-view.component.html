@@ -9,7 +9,7 @@
             <div *ngIf="f.euro.errors.required">Euro is required</div>
           </div>
         </div>
-        <div class="col-">
+        <div class="col- rowAdjust">
           <input type="datetime" class="form-control adjust" formControlName="dateTime" placeholder="dd.mm.yyyy / hh:mm*"
             [ngClass]="{ 'is-invalid': submitted && f.dateTime.errors }">
           <div *ngIf="submitted && f.dateTime.errors" class="invalid-feedback">
@@ -19,29 +19,38 @@
       </div>
     </div>
     <br>
-    <label>
-      Freeclick:
-      <input type="checkbox" formControlName="freeclick">
-    </label>
-    <form [formGroup]="networkForm">
-      <label>
-        Network:
-        <label> a
-          <input type="radio" formControlName="network" value="a">
-        </label>
-        <label> b
-          <input type="radio" formControlName="network" value="b">
-        </label>
-        <label> c
-          <input type="radio" formControlName="network" value="c">
-        </label>
-      </label>
-    </form>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-">
+          <label class="form-check-label">
+            Freeclick:
+            <input type="checkbox" formControlName="freeclick">
+          </label>
+
+        </div>
+        <div class="col- adjustNetwork">
+          <form [formGroup]="networkForm">
+            <label>
+              Network:
+              <label> a
+                <input type="radio" formControlName="network" value="a">
+              </label>
+              <label> b
+                <input type="radio" formControlName="network" value="b">
+              </label>
+              <label> c
+                <input type="radio" formControlName="network" value="c">
+              </label>
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
     <form [formGroup]="plistaProduct">
       <div class="form-group">
         <label>
           PlistaProduct:
-          <select class="form-control" formControlName="products">
+          <select class="form-control-sm" formControlName="products">
             <option *ngFor="let pro of products" [ngValue]="pro">
               {{ pro.name }}
             </option>

@@ -1,6 +1,15 @@
-/* @-moz-document url-prefix() {
+@-moz-document url-prefix() {
     button {
         padding: 0px;
         margin: 0;
     }
-} */
+}
+
+.root {
+    text-align:center;
+    padding-top: 15px;
+
+}
+.generalAlignment {
+    padding-top: 20px;
+}
