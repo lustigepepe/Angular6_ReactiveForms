@@ -12,7 +12,7 @@
           <input type="datetime" class="form-control adjust" formControlName="dateTime" placeholder="dd.mm.yyyy / hh:mm*"
             [ngClass]="{ 'is-invalid': submitted && f.dateTime.errors }">
           <div *ngIf="submitted && f.dateTime.errors" class="invalid-feedback">
-            <div *ngIf="f.dateTime.errors.required">Date and time is required</div>
+            <div *ngIf="f.dateTime.errors.required">Date and time are required</div>
           </div>
         </div>
       </div>
