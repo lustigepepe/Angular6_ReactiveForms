@@ -19,7 +19,8 @@ export class EditComponent implements OnInit {
   itemData = new Data();
   allData  : Array<Object> = [];
   itemCount : number = 0;
-  submitted = false;
+  submitted: boolean = false;
+  dataJSON: string;
 
   products = [{'id':1, 'name':'Product 1'},
     {'id':2, 'name': 'Product 2'}, {'id':3, 'name': 'Product 3'},
@@ -47,7 +48,12 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.getEditData();
   }
+  
+  updateData() {
+    this.dataService.updataData(JSON.stringify(this.allData));
+    this.router.navigateByUrl("/");
 
+  }
   getEditData(): void {
 
     const id = +this.route.snapshot.paramMap.get('id');
@@ -68,21 +74,21 @@ export class EditComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
-    
     if (this.editForm.invalid) {
       return;
     }
     let str: string = this.editForm.value.dateTime;    
     str = str.replace(/\./g, '/');
     const val = moment(str, "DD/MM/YYYY / HH:mm", true);
-    
     if (!val.isValid()) {
       alert('Please check your date format.\n Format is: DD/MM/YYYY / HH:mm');
       return;
     }
-   
+
+    let newDate = moment(str, "DD/MM/YYYY / HH:mm", true).format()
     this.itemData.camp_cpc = this.editForm.value.euro;
-    this.itemData.date = this.editForm.value.dateTime;
+    this.itemData.date = newDate;
+    // this.itemData.date = this.editForm.value.dateTime;
     this.itemData.network = this.networkForm.value.network;
     this.itemData.freeclick = this.editForm.value.freeclick;
     this.itemData.PlistaProduct = this.plistaProduct.value.products.name;
@@ -90,6 +96,7 @@ export class EditComponent implements OnInit {
     
     console.log('Result after edited:');
     console.log(this.allData);
+    this.dataService.updataData(JSON.stringify(this.allData));
 
     this.router.navigateByUrl("/");
 

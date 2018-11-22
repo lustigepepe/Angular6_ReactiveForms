@@ -1,24 +1,24 @@
 <div class="container">
   <div class="row justify-content-center">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Currency</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- <tr ng-repeat="da in data"> -->
-          <tr *ngFor="let da of data">
-            <td>{{ da.date | date: 'dd.mm.yyyy - hh:mm' }}</td>
-            <td>{{ da.camp_cpc | currency:'EUR' }}</td>
-            <td>
-              <!-- <a routerLink="/edit/{{da.a}}">Edit</a> -->
-              <button class="btn btn-light btn-sm" (click)="editClick(da.a)">Edit</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Currency</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let da of data">
+          <td *ngIf="dateFormatOne">{{ da.date | date: 'dd.mm.yyyy - hh:mm' }}</td>
+          <td *ngIf="!dateFormatOne">{{ da.date | date: 'dd.mm.yyyy / hh:mm' }}</td>
+          <td>{{ da.camp_cpc | currency:'EUR' }}</td>
+          <td>
+            <!-- <a routerLink="/edit/{{da.a}}">Edit</a> -->
+            <button class="btn btn-light btn-sm" (click)="editClick(da.a)">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

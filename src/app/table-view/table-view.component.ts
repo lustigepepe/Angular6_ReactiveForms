@@ -10,16 +10,28 @@ import { Router } from '@angular/router';
 
 export class TableComponent implements OnInit {
   data: Array<Object>[] = [];
+  dateFormatOne: boolean = true;
 
   constructor(private dataService: DataService, private router: Router) { }
-
+  slash
+  dataSubscriber;
   ngOnInit(): void {
-      this.dataService.getJSON().subscribe(data => {
+    console.log('dateFormatOne: '+ this.dateFormatOne);
+    this.dataSubscriber = this.dataService.getJSON().subscribe(data => {
           this.data = data;
+      });
+      this.dataService.currentData.subscribe(data => {
+        if(data !== 'null') {
+          if(!this.dataSubscriber.closed) {
+            this.dataSubscriber.unsubscribe();
+            this.dateFormatOne = false;
+          }
+          this.data = JSON.parse(data);
+        }
       });
   }
   editClick(id): void {
     this.router.navigateByUrl("/edit/"+id);
   }
- 
+
 }
