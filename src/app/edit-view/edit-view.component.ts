@@ -21,6 +21,7 @@ export class EditComponent implements OnInit {
   itemCount : number = 0;
   submitted: boolean = false;
   dataJSON: string;
+  wrongDateTime: boolean = false;
 
   products = [{'id':1, 'name':'Product 1'},
     {'id':2, 'name': 'Product 2'}, {'id':3, 'name': 'Product 3'},
@@ -74,17 +75,20 @@ export class EditComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
-    if (this.editForm.invalid) {
-      return;
-    }
+    this.wrongDateTime = false;
+
     let str: string = this.editForm.value.dateTime;    
     str = str.replace(/\./g, '/');
     const val = moment(str, "DD/MM/YYYY / HH:mm", true);
     if (!val.isValid()) {
-      alert('Please check your date format.\n Format is: DD/MM/YYYY / HH:mm');
+      this.wrongDateTime = true;
       return;
     }
 
+    if (this.editForm.invalid) {
+      return;
+    }
+    
     let newDate = moment(str, "DD/MM/YYYY / HH:mm", true).format()
     this.itemData.camp_cpc = this.editForm.value.euro;
     this.itemData.date = newDate;

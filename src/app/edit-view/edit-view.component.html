@@ -5,7 +5,7 @@
         <div class="col-">
           <input type="number" class="form-control adjust" formControlName="euro" placeholder="Euro*" [ngClass]="{ 'is-invalid': submitted && f.euro.errors }">
           <div *ngIf="submitted && f.euro.errors" class="invalid-feedback">
-            <div *ngIf="f.euro.errors.required">Euro is required</div>
+            <div *ngIf="f.euro.errors.required">Euro as number is required</div>
           </div>
         </div>
         <div class="col- rowAdjust">
@@ -14,6 +14,7 @@
           <div *ngIf="submitted && f.dateTime.errors" class="invalid-feedback">
             <div *ngIf="f.dateTime.errors.required">Date and time are required</div>
           </div>
+          <div *ngIf="wrongDateTime" class="alert alert-danger">Please check your date format.<br> Format is: DD/MM/YYYY / HH:mm</div>
         </div>
       </div>
     </div>
