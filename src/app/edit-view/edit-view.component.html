@@ -4,14 +4,14 @@
       <div class="row justify-content-center">
         <div class="col-">
           <input type="number" class="form-control adjust" formControlName="euro" placeholder="Euro*" [ngClass]="{ 'is-invalid': submitted && f.euro.errors }">
-          <div *ngIf="submitted && f.euro.errors" class="invalid-feedback">
+          <div *ngIf="submitted && f.euro.errors" class="alert alert-danger">
             <div *ngIf="f.euro.errors.required">Euro as number is required</div>
           </div>
         </div>
         <div class="col- rowAdjust">
           <input type="datetime" class="form-control adjust" formControlName="dateTime" placeholder="dd.mm.yyyy / hh:mm*"
             [ngClass]="{ 'is-invalid': submitted && f.dateTime.errors }">
-          <div *ngIf="submitted && f.dateTime.errors" class="invalid-feedback">
+          <div *ngIf="submitted && f.dateTime.errors" class="alert alert-danger">
             <div *ngIf="f.dateTime.errors.required">Date and time are required</div>
           </div>
           <div *ngIf="wrongDateTime" class="alert alert-danger">Please check your date format.<br> Format is: DD/MM/YYYY / HH:mm</div>

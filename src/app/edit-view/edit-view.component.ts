@@ -80,8 +80,6 @@ export class EditComponent implements OnInit {
     let str: string = this.editForm.value.dateTime;    
     str = str.replace(/\./g, '/');
     const val = moment(str, "DD/MM/YYYY / HH:mm", true);
-    console.log(this.editForm.controls.euro.touched);
-    console.log(!val.isValid());
     if (this.editForm.controls.dateTime.touched && !val.isValid()) {
     console.log('!val.isValid()');
       
